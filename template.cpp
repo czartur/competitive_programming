@@ -11,6 +11,3 @@ typedef long long ll;
 typedef pair<int, int> pii;
 typedef pair<int, pii> piii;
 typedef vector<int> vi;
-
-int main(){
-}
