@@ -3,7 +3,7 @@ using namespace std;
 //Binary indexed tree(BIT)
 //Example: sum of a range
 //p&(-p) is the last bit of the set
-//to take a range (l,r) you need to do query two times
+//to take a range (l,r) you need to do query operation two times
 
 int n, bit[100005];
 void add(int idx, int val){
