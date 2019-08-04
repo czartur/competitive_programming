@@ -1,3 +1,4 @@
+//clean code, working
 
 int z[N];
 
