@@ -4,6 +4,7 @@ using namespace std;
 //GOAL: calculate shortest distance between a node and all others
 
 //Remember to use negative distances on priority queue (sorting)
+//Remember also to set all distances to infinity
 int dist[N];
 vi adj[N], adjw[N];
 void dijkstra(int x){
