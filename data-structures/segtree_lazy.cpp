@@ -37,7 +37,3 @@ int query(int p, int l, int r, int i, int j){
   if(l>j || r<i) return 0;
   return st[x] + st[y];
 }
-
-int main(){
-
-}
