@@ -8,7 +8,7 @@ using namespace std;
 //Trick: sparse table baseado nas alturas relativas (i+2^j)
 //30 is a good limit
 vector <int> adj[N];
-int h[N], anc[30][N];
+int h[N], anc[32][N];
 
 void bfs(int x){ // find relative height of nodes
   queue <int> q;
@@ -32,19 +32,20 @@ void build (int n){
 }
 
 int lca(int u, int v){
-  int ans=-1;
   //equal heights first
   if(h[v]>h[u]) swap(u,v); //keep u always bigger
   for(int j=30; j>=0; j--){
     if(h[u]-(1<<j)>=h[v]) u=anc[j][u];
   }
-
+  //they can be the same now...
+  if(u==v) return u;
+  
   for(int j=30; j>=0; j--){
     if(anc[j][u]!=anc[j][v]){
-      return ans;
+      u=anc[j][u], v=anc[j][v];
     }
-    ans=anc[j][u];
   }
+  return anc[0][u];
 }
 
 int main(){
