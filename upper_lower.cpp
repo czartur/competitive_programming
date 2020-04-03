@@ -21,7 +21,7 @@ int lowerb(int x){
   }
   return r;
 }
-itn upperb(int x){
+int upperb(int x){
   int l=1, r=n;
   while(l<r){
     if(x<v[mid]) r=mid-1;
