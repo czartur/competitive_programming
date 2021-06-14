@@ -14,6 +14,8 @@ void dijkstra(int x){
   while(!pq.empty()){
     int u=pq.top().nd;
     int d=-pq.top().st;
+    pq.pop();
+    
     if(d>dist[u]) continue; //you always forget this step...
     for(int i=0; i<adj[u].size(); i++){
       int v=adj[u][i], w=adjw[u][i];
