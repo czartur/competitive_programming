@@ -13,3 +13,8 @@ typedef long long ll;
 typedef pair<int, int> pii;
 typedef pair<int, pii> piii;
 typedef vector<int> vi;
+
+int main(){
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+}
