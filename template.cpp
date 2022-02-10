@@ -8,6 +8,7 @@ using namespace std;
 #define cl(x,y) memset(x, y, sizeof(x))
 #define inf 0x3f3f3f
 #define linf 0x3f3f3f3f3f3f3f3f
+#define endl '\n'
 
 typedef long long ll;
 typedef pair<int, int> pii;
