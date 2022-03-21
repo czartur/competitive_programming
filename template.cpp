@@ -6,7 +6,7 @@ using namespace std;
 #define pb push_back
 #define mp make_pair
 #define cl(x,y) memset(x, y, sizeof(x))
-#define inf 0x3f3f3f
+#define inf 0x3f3f3f3f
 #define linf 0x3f3f3f3f3f3f3f3f
 #define endl '\n'
 
