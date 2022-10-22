@@ -1,4 +1,4 @@
-// calculate LPS (longest proper prefix which is also a suffix)
+// pre-calculate LPS (longest proper prefix which is also a suffix)
 // for every substring [0 ... i] of pat
 vector<int> lps_build(string& pat){
   int m = pat.size();
@@ -12,15 +12,19 @@ vector<int> lps_build(string& pat){
   return lps;
 }
 
-int kmp(string& pat, string &s, vector<int> &lps){
+// kmp itself 
+int kmp(string& pat, string &s, vector<int> &lps){ 
   int n = s.size();
   
   for(int i=0, j=0; i<n; i++){
     while(j>0 && s[i] != pat[j]) j=lps[j-1];
     if(s[i] == pat[j]) j++;
     
-    if(j == pat.size()) return i+1-j;
+    if(j == pat.size()) return i+1-j; //return index of matching position
   }
   
   return -1;
 }
+
+// GOAL : find pattern in string
+// Complexity : O(n+m) 
