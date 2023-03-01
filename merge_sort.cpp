@@ -1,30 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
-//Merge Sort
-//It does count inversions too
-//need improvements
 
-#define pb push_back
+// careful : overflow possible at 'inv' (use long long)
+// i, j ~ 0 indexed
 
-int inv=0;
-vector <int> merge(vector <int>  v, int i, int j){
+int inv=0; 
+vector <int> merge(vector <int> &v, int i, int j){
   vector <int> vl, vr, ans;
-  if(i==j) {ans.pb(v[i-1]); return ans;}
+  if(i==j) {ans.push_back(v[i]); return ans;}
   vl=merge(v, i, (i+j)/2), vr=merge(v, (i+j)/2+1, j);
   int l=0, r=0;
-  while(l<vl.size() or r<vr.size()){
-    if(vl[l]<=vr[r] || r==vr.size()) ans.pb(vl[l++]);
-    else ans.pb(vr[r++]), inv++;
+  while(l<vl.size() || r<vr.size()){
+    if(r == vr.size() || (l<vl.size() && r<vr.size() && vl[l]<vr[r])) ans.pb(vl[l++]);
+    else ans.push_back(vr[r++]), inv+=vl.size() - l;
   }
   return ans;
-}
-int main(){
-  int n, x;
-  vector <int> v;
-  scanf("%d", &n);
-  while(n--) {scanf("%d", &x); v.pb(x);}
-  v=merge(v, 1, v.size());
-  n=v.size();
-  while(n) {printf("%d ", v[v.size()-n--]);}
-  printf("\n%d\n", inv);
 }
