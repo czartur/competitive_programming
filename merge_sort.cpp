@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 // careful : overflow possible at 'inv' (use long long)
 // i, j ~ 0 indexed
 
