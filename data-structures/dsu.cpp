@@ -1,28 +1,29 @@
-#include <bits/stdc++.h>
-using namespace std;
-//Disjoint Set Union
+// tested & working
+// constructor --> singletons / each element is its own parent (0-indexed)
 
-//Find function returns the representative of a Set
-//"Path-compression" is used here, the strategy is
-//every element of a set is connected to the representative
+class DSU{
+  vector<int> par;
+  vector<int> weight;
 
-//Union function joins two sets (by its representatives)
-//"Union by rank" is used here, the strategy is
-//plug smaller set into the bigger on
+  public:
+  int size;
+  
+  DSU(int n) : size{n}{
+    par.resize(n);
+    weight.resize(n);
+    iota(par.begin(), par.end(), 0); // singletons
+  }
 
-//building: each element starts like an individual set
-//and connected to itself (the element is your own representative)
+  int find(int a){
+    if(par[a]==a) return a;
+    return par[a]=find(par[a]);
+  }
 
-int par[N], sz[N]; //pai e tamanho do set
-
-int find(int a){
-  if(par[a]==a) return a;
-  return par[a]=find(par[a]);
-}
-
-void union(int a, int b){
-  a=find(a), b=find(b);
-  if(sz[a]<sz[b]) swap(a,b);
-  par[a]=b;
-  sz[b]+=sz[a];
-}
+  void join(int a, int b){
+    a=find(a), b=find(b);
+    if(a != b) size--;
+    if(weight[a]<weight[b]) swap(a,b);
+    par[a]=b;
+    weight[b]+=weight[a];
+  }
+}; 
