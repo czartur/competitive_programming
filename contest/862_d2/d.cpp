@@ -80,14 +80,13 @@ void solve(){
 
   // calculate distance from end
   dfs(end, 0, last, adj, r);
- 
+
   sort(l.begin(), l.end()); 
   sort(r.begin(), r.end());
 
   DSU dsu(n);
   vector<int> ans;
   int i=n-1, j=n-1;
-
   for(int k=n; k>=1; --k){
     while(i>=0 && l[i].first >= k) dsu.join(start, l[i--].second);
     while(j>=0 && r[j].first >= k) dsu.join(end, r[j--].second);
