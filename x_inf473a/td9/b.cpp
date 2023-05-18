@@ -10,19 +10,34 @@ typedef long long ll;
 const int INF = 0x3f3f3f3f;
 const ll LINF = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1001113;
-const int N =1e5+5;
+const int N =2e6+1;
 
-int greed(int target, int start, vector<int>&coin){
-  int pos = start;
+int greed(int target, vector<int>&coin){
+  int pos = coin.size()-1;
   int ans = 0;
   while(pos >= 0){
-    if(target > coin[pos]){
+    // db(target);
+    if(target >= coin[pos]){
       ans += target/coin[pos];
       target %= coin[pos];
     }
+    // db(ans);
     --pos;
   }
   return ans;
+}
+
+int memo[N];
+int dp(int target, vector<int>&coin){
+  if(target == 0) return 0;
+  if(target < 0) return INF;  
+  if(memo[target]) return memo[target];
+
+  int ans = INF;
+  for(auto c : coin){
+    ans = min(ans, dp(target-c, coin)+1);
+  }
+  return memo[target] = ans;
 }
 
 int main(){
@@ -34,11 +49,11 @@ int main(){
   for(auto& val : coin) cin >> val;
 
   bool canonical = 1;
-  for(int target = *coin.rbegin(); target < coin[n-1] + coin[n-2]; ++target){
-    for(int start = n-1; start >= 0; --start){
-      if(greed(target, start, coin) < greed(target, n-1, coin)) canonical = 0;
-    }
+  for(int i = coin[n-2]; i <= coin[n-2]+coin[n-1]; ++i){
+    if(greed(i, coin) != dp(i, coin)) canonical = 0;
+    // db(i);
+    // db(greed(i, coin));
+    // db(dp(i, coin));
   }
-
   cout << (canonical ? "canonical" : "non-canonical") << endl;
 }
